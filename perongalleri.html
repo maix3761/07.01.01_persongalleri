@@ -66,6 +66,8 @@
         async function hentData() {
             const resspons = await fetch(url, options);
             const json = await resspons.json();
+            let personer;
+            let filter = "ja";
             vis(json);
         }
 
@@ -77,14 +79,22 @@
             json.forEach(person => {
                 const klon = template.cloneNode(true);
 
-                klon.querySelector(".navn").textContent = person.navn;
-                klon.querySelector(".efternavn").textContent = person.efternavn;
-                klon.querySelector(".fødselsdag").textContent = person.fødselsdag;
-                klon.querySelector(".titel").textContent = person.titel;
-                klon.querySelector(".religion").textContent = person.religion;
-                klon.querySelector(".hobby").textContent = person.hobby;
-                klon.querySelector(".billede").src = medieurl + person.billede;
-                main.appendChild(klon);
+
+                if (filter == person.troende) {
+                    const klon = skabelon.cloneNode(true);
+                    klon.querySelector(.
+                        "navn").textContent = person.fornavn + " " + person.efternavn;
+                    klon.querySelector(".billede").src = medieurl + person.billede;
+
+                    //                    klon.querySelector(".navn").textContent = person.navn;
+                    // klon.querySelector(".efternavn").textContent = person.efternavn;
+                    // klon.querySelector(".fødselsdag").textContent = person.fødselsdag;
+                    // klon.querySelector(".titel").textContent = person.titel;
+                    // klon.querySelector(".religion").textContent = person.religion;
+                    // klon.querySelector(".hobby").textContent = person.hobby;
+                    // klon.querySelector(".billede").src = medieurl + person.billede;
+                    main.appendChild(klon);
+                }
             })
         }
 
